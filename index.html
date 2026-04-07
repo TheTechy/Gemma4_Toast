@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Notification Test Page</title>
+    <!-- Link the custom component script -->
+    <script src="./src/Toast.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        #successBtn { background-color: #28a745; color: white; }
+        #successBtn:hover { background-color: #218838; }
+        #errorBtn { background-color: #dc3545; color: white; }
+        #errorBtn:hover { background-color: #c82333; }
+        #infoBtn { background-color: #007bff; color: white; }
+        #infoBtn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">Toast Notification Demo</h1>
+    <p>This page demonstrates the usage of the custom <code id="component-tag">&lt;toast-container&gt;</code> Web Component.</p>
+
+    <div class="controls">
+        <button id="successBtn">Show Success Toast (3s)</button>
+        <button id="errorBtn">Show Error Toast (5s)</button>
+        <button id="infoBtn">Show Info Toast (2s)</button>
+    </div>
+
+    <!-- The custom element instance where toasts will appear -->
+    <toast-container id="toast-area"></toast-container>
+
+    <script>
+        // Get references to the elements
+        const toastArea = document.getElementById('toast-area');
+        const successBtn = document.getElementById('successBtn');
+        const errorBtn = document.getElementById('errorBtn');
+        const infoBtn = document.getElementById('infoBtn');
+
+        /**
+         * Helper function to display a toast and handle cleanup.
+         * @param {string} message - The message to display.
+         * @param {string} type - The type of toast ('success', 'error', 'info').
+         * @param {number} duration - Display duration in ms.
+         * @returns {function} A cleanup function to manually dismiss the toast.
+         */
+        function showToast(message, type, duration) {
+            // Call the method on the custom element instance
+            const cleanup = toastArea.showToast(message, type, duration);
+            console.log(`Toast shown: "${message}" (${type}). Cleanup function returned.`);
+            return cleanup;
+        }
+
+        // Event listeners for buttons
+        successBtn.addEventListener('click', () => {
+            const cleanup = showToast("Operation successful! Data saved.", 'success', 3000);
+            // Example of manual dismissal after 1 second
+            setTimeout(() => {
+                cleanup();
+                console.log("Success toast manually dismissed after 1 second.");
+            }, 1000);
+        });
+
+        errorBtn.addEventListener('click', () => {
+            const cleanup = showToast("Failed to connect to the server. Please try again.", 'error', 5000);
+            // No manual dismissal here, letting it run its course
+        });
+
+        infoBtn.addEventListener('click', () => {
+            const cleanup = showToast("Welcome! This is an informational message.", 'info', 2000);
+            // Example of immediate manual dismissal
+            setTimeout(() => {
+                cleanup();
+                console.log("Info toast manually dismissed after 2 seconds.");
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
