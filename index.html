@@ -3,88 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemma Toast Notification</title>
+    <title>Toast Notification Demo</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .hero {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background: linear-gradient(145deg, #e6e6e6, #ffffff);
-            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-        }
-        .features {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem 0;
-        }
-        .feature {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            width: 80%;
-        }
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .code-snippet {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            overflow: auto;
-            max-width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Gemma Toast Notifications</h1>
-        <p>Elegant and Functional Toast Notifications for Your Projects</p>
-    </div>
-    <div class="features">
-        <div class="feature">
-            <h2>Feature Highlights</h2>
-            <p>Explore various toast options, customizable settings, and more!</p>
+    <header>
+        <div class="hero">
+            <h1>Welcome to Gemma4 Toast!</h1>
+            <p>Your go-to solution for elegant toast notifications.</p>
+            <a href="#demos" class="cta-button">See Demos</a>
         </div>
-        <div class="feature">
-            <h3>Interactive Demos</h3>
-            <p>Get hands-on experience with different toast types!</p>
-        </div>
-        <div class="feature">
-            <h3>Animations & Positioning</h3>
-            <p>Customize the appearance and behavior of your toast notifications.</p>
-        </div>
-    </div>
-    <div class="code-snippet">
-        <h3>Code Snippets</h3>
-        <pre><code>const toast = new Toast({
-            message: 'Hello, World!',
-            duration: 3000,
-            position: 'top-right',
-        });
-        toast.show();
-        </code></pre>
-    </div>
-    <script src="scripts.js"></script>
+    </header>
+    <main>
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Customizable Positioning</li>
+                <li>Multiple Animation Options</li>
+                <li>Interactive Demos</li>
+                <li>Live Code Snippets</li>
+            </ul>
+        </section>
+        <section id="demos">
+            <h2>Interactive Demos</h2>
+            <div class="demo">
+                <h3>Toast Types</h3>
+                <button onclick="showToast('success')">Show Success Toast</button>
+                <button onclick="showToast('error')">Show Error Toast</button>
+                <button onclick="showToast('info')">Show Info Toast</button>
+            </div>
+            <div class="demo">
+                <h3>Positioning Options</h3>
+                <button onclick="setPosition('top-right')">Top Right</button>
+                <button onclick="setPosition('bottom-left')">Bottom Left</button>
+            </div>
+            <div class="demo">
+                <h3>Animation Controls</h3>
+                <label for="animation-select">Choose Animation:</label>
+                <select id="animation-select" onchange="setAnimation(this.value)">
+                    <option value="fade">Fade</option>
+                    <option value="slide">Slide</option>
+                </select>
+            </div>
+        </section>
+        <section id="live-code">
+            <h2>Live Code Snippets</h2>
+            <pre><code>showToast('success');</code></pre>
+            <pre><code>setPosition('top-right');</code></pre>
+            <pre><code>setAnimation('fade');</code></pre>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Gemma4. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
